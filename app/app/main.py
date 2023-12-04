@@ -3,7 +3,7 @@ from fastapi.responses import HTMLResponse
 from fastapi import FastAPI, status
 from utils.some import some
 from utils.config import Config, load_config
-from utils.db_worker import make_connection_string
+from utils.db_worker import make_connection_string, db_smoker
 import os
 
 app = FastAPI()
@@ -12,6 +12,7 @@ app = FastAPI()
 @app.get("/", status_code=status.HTTP_200_OK)
 async def hello():
     config_obj: Config = load_config()
+    db_smoker(config_obj)
     ret = f'''<html><body><h2>Hello World!
     port database : {config_obj.db.port}</h2>
     <h4>{os.listdir(path=".")}<h4>
