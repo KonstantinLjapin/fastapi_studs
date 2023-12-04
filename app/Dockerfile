@@ -1,7 +1,8 @@
-FROM python:3.10-slim-buster
+FROM python:3.11-slim-buster
 LABEL authors="lyapin"
 
-WORKDIR /app
+RUN mkdir /app
+WORKDIR /app/app
 
 
 COPY requirements.txt /app/requirements.txt

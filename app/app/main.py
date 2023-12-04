@@ -1,13 +1,17 @@
 import uvicorn
 from fastapi.responses import HTMLResponse
 from fastapi import FastAPI, status
-
+from config import load_config, Config
+import os
 app = FastAPI()
 
 
 @app.get("/", status_code=status.HTTP_200_OK)
 async def hello():
-    ret = '''<html><body><h2>Hello World!</h2></body></html>'''
+    config_obj: Config = load_config()
+    ret = f'''<html><body><h2>Hello World!
+    port database : {config_obj.db.port}</h2>
+    <h4>{os.listdir(path=".")}<h4></body></html>'''
 
     return HTMLResponse(content=ret)
 
