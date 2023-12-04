@@ -30,3 +30,7 @@ def load_config(path: str = None):
         ),
 
     )
+
+
+if __name__ == "__main__":
+    pass

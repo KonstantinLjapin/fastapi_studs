@@ -1,7 +1,9 @@
 import uvicorn
 from fastapi.responses import HTMLResponse
 from fastapi import FastAPI, status
-from config import load_config, Config
+from utils.some import some
+from utils.config import Config, load_config
+from utils.db_worker import make_connection_string
 import os
 app = FastAPI()
 
@@ -11,7 +13,9 @@ async def hello():
     config_obj: Config = load_config()
     ret = f'''<html><body><h2>Hello World!
     port database : {config_obj.db.port}</h2>
-    <h4>{os.listdir(path=".")}<h4></body></html>'''
+    <h4>{os.listdir(path=".")}<h4>
+    <h5>{make_connection_string(config_obj)}<h5>
+    <h6>{some}<h6></body></html>'''
 
     return HTMLResponse(content=ret)
 
