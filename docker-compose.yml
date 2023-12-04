@@ -3,7 +3,7 @@ version: '3.3'
 
 services:
     back_fastapi:
-     build: app_c/
+     build: app/
      container_name: back_fastapi
      ports:
        - "80:80"
